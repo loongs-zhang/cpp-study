@@ -4,3 +4,4 @@ project(cpp_study)
 set(CMAKE_CXX_STANDARD 20)
 
 add_executable(01HelloWorld 01HelloWorld.cpp)
+add_executable(02Cin 02Cin.cpp)
