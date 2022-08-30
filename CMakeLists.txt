@@ -12,5 +12,6 @@ add_executable(02Cin 02Cin.cpp)
 add_executable(03Loop 03Loop.cpp)
 add_executable(04If 04If.cpp)
 add_executable(05Hook 05Hookd.cpp)
-
 target_link_libraries(05Hook libhook)
+add_executable(06Reference 06Reference.cpp)
+add_executable(07Pointer 07Pointer.cpp)
