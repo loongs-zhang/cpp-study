@@ -3,15 +3,23 @@ project(cpp_study)
 
 set(CMAKE_CXX_STANDARD 20)
 
-#设置动态链接库名
-set(LIB_NAME libhook)
-add_library(libhook SHARED hook.cpp)
-
 add_executable(01HelloWorld 01HelloWorld.cpp)
 add_executable(02Cin 02Cin.cpp)
 add_executable(03Loop 03Loop.cpp)
 add_executable(04If 04If.cpp)
+#设置动态链接库名
+add_library(libhook SHARED hook.cpp)
 add_executable(05Hook 05Hookd.cpp)
 target_link_libraries(05Hook libhook)
 add_executable(06Reference 06Reference.cpp)
 add_executable(07Pointer 07Pointer.cpp)
+#设置动态链接库名
+add_library(libextern SHARED 08Extern.cpp)
+add_executable(08use_extern 08Use_extern.cpp)
+target_link_libraries(08use_extern libextern)
+add_executable(09Class 09String.cpp)
+add_executable(10Vector 10Vector.cpp)
+add_executable(11Set 11Set.cpp)
+add_executable(12Map 12Map.cpp)
+add_executable(13Cast 13Cast.cpp)
+add_executable(14Error 14Error.cpp)
