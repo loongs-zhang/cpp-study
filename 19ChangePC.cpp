@@ -14,7 +14,7 @@ void signal_handler(int signum, siginfo_t *siginfo, void *p) {
     ucontext_t *context = static_cast<ucontext_t *>(p);
 #if defined __linux__
     //x86_64 linux
-    context->uc_mcontext->gregs[REG_RIP]= reinterpret_cast<__uint64_t>(yields);
+    context->uc_mcontext.gregs[REG_RIP]= reinterpret_cast<__uint64_t>(yields);
 #elif defined  __aarch64__
     //arm64 macos
     context->uc_mcontext->__ss.__pc = reinterpret_cast<__uint64_t>(yields);
