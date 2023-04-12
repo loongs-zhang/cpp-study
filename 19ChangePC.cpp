@@ -13,16 +13,22 @@ void yields() {
 void signal_handler(int signum, siginfo_t *siginfo, void *p) {
     ucontext_t *context = static_cast<ucontext_t *>(p);
 #if defined __linux__
-    //x86_64 linux
-    context->uc_mcontext.gregs[REG_RIP]= reinterpret_cast<__uint64_t>(yields);
-#elif defined  __aarch64__
-    //arm64 macos
-    context->uc_mcontext->__ss.__pc = reinterpret_cast<__uint64_t>(yields);
-#elif defined __x86_64__
-    //x86_64 macos
-    context->uc_mcontext->__ss.__rip = reinterpret_cast<__uint64_t>(yields);
+    #if defined __x86_64__
+        //x86_64 linux
+        context->uc_mcontext.gregs[REG_RIP]= reinterpret_cast<__uint64_t>(yields);
+    #elif defined  __aarch64__
+        //arm64 linux
+        context->uc_mcontext.pc = reinterpret_cast<__uint64_t>(yields);
+    #endif
+#elif defined __APPLE__
+    #if defined  __aarch64__
+        //arm64 macos
+        context->uc_mcontext->__ss.__pc = reinterpret_cast<__uint64_t>(yields);
+    #elif defined __x86_64__
+        //x86_64 macos
+        context->uc_mcontext->__ss.__rip = reinterpret_cast<__uint64_t>(yields);
+    #endif
 #endif
-
     std::cout << "Received signal " << signum << " from process " << siginfo->si_pid << std::endl;
 }
 
@@ -43,6 +49,7 @@ void thread_main() {
         std::cout << "Waiting for signal..." << std::endl;
         sleep(1);
     }
+    std::cout << "thread main finished!" << std::endl;
 }
 
 int main() {
