@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19)
+cmake_minimum_required(VERSION 3.25)
 project(cpp_study)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -29,3 +29,4 @@ add_executable(17Sigaction 17Sigaction.cpp)
 add_executable(18SetJump 18SetJump.cpp)
 add_executable(19ReentrantPreempt 19ReentrantPreempt.cpp)
 add_executable(20SginalfdInMacos 20SginalfdInMacos.cpp)
+add_executable(21StacklessCoroutine 21StacklessCoroutine.cpp)
